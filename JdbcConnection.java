@@ -6,13 +6,13 @@ import java.util.Scanner;
  public class JdbcConnection {//implements SoftwareInterface {
 	static final Scanner obj=new Scanner(System.in);
 	public static void update(Connection connection,int software_id) throws SQLException {
-		PreparedStatement pstmt = connection.prepareStatement("update  softwaredetails set  softwarename=? where software_id=?"+software_id);
+		PreparedStatement pstmt = connection.prepareStatement("update  softwaredetails set  softwarename=? where software_id=?");
 		String Value=obj.next();
 		pstmt.setString(1,Value);
 		pstmt.setInt(2,software_id);
 		
 		int record=pstmt.executeUpdate();
-		System.out.println(record);
+		System.out.println(record+"record added successfully");
 		
 		
 	}
@@ -55,7 +55,7 @@ import java.util.Scanner;
 		Connection connection=null;
 		final  SoftwareDetails addobj =new SoftwareDetails();
 		Class.forName("com.mysql.jdbc.Driver");
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/employees", "root" ,"sanju@201");
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/software", "root" ,"sanju@201");
 		//Statement stmt = connection.createStatement();
 		System.out.println("enter 1 for addsoftwaredetails");
 		System.out.println("enter 2 for updatesoftware");
@@ -77,16 +77,16 @@ import java.util.Scanner;
 		case 2:
 			//SoftwareDetails obj1=getupdate();
 			System.out.println("enter which record do you want to update");
-			update(connection,125);
+			update(connection,123);
 			
 			break;
 		case 3:
 			System.out.println("enter id to read the record ");
-			view(connection,145);
+			view(connection,122);
 			break;
 		case 4:
-			System.out.println("enter which record do you want to dalete");
-			delete(connection,125);
+			System.out.println("enter which record do you want to delete");
+			delete(connection,123);
 			break;
 		
 		default:
